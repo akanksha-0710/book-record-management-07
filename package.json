@@ -1,0 +1,26 @@
+{
+  "name": "book-record-management-07",
+  "version": "1.0.0",
+  "description": "Book record management server build with node.js and express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akanksha-0710/book-record-management-07.git"
+  },
+  "author": "Akanksha Jadhav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akanksha-0710/book-record-management-07/issues"
+  },
+  "homepage": "https://github.com/akanksha-0710/book-record-management-07#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
