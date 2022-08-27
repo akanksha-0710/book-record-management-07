@@ -1,4 +1,6 @@
 const express = require("express");
+const{users} = require('./data/users.json');
+
 
 const app = express();
 
@@ -9,6 +11,114 @@ app.use(express.json());
 app.get("/",(req,res)=>{
     res.status(200).json({
         message:"Server is up and running",
+    });
+});
+
+/**
+ * Route:/users
+ * Method: GET
+ * Description:Get all users
+ * Access: Public
+ * Parameters: None 
+ */
+app.get('/users',(req,res)=>{
+    res.status(200).json({
+        success:true,
+        data:users,
+
+    });
+});
+
+/**
+ * Route:/users/:id
+ * Method: GET
+ * Description:Get Single user by id
+ * Access: Public
+ * Parameters: None 
+ */
+
+app.get('/users/:id',(req,res)=>{
+    const{id} = req.params;
+    const user = users.find((each)=>each.id === id );
+    if(!user){
+        return res.status(404).json({
+            success:false,
+            message:"User not found",
+        });
+    }
+    return res.status(200).json({
+        success:true,
+        data:user,
+    });
+});
+
+/**
+ * Route:/users
+ * Method: GET
+ * Description:Create new user
+ * Access: Public
+ * Parameters: None 
+ */
+
+
+app.post('/users',(req,res)=>{
+    const{id,name,surname,email,subscriptionType,subscriptionDate} = 
+    req.body;
+
+    const user = users.find((each)=> each.id ===id);
+if (user){
+    return res.status(404).json({
+        success:false,
+        message:"User exists with this id",
+    });
+} 
+
+users.push({
+    id,
+    name,
+    surname,
+    email,
+    subscriptionType,
+    subscriptionDate,
+
+});
+return res.status(201).json({
+    success:true,
+    data:users,
+});
+
+});
+
+/**
+ * Route:/users/:id
+ * Method: PUT
+ * Description:updating user date
+ * Access: Public
+ * Parameters: None 
+ */
+
+app.put('/users/:id',(req,res)=>{
+    const{id} = req.params;
+    const{data} = req.body;
+
+    const user=users.find((each)=>each.id === id);
+    if(!user)
+    return res.status(404).json({
+        success:false,
+        message:"user not found"
+    });
+    const updatedUser = users.map((each)=>{
+        if(each.id===id){
+            return{
+                ...each,
+                ...data,
+            };
+        }
+        return each;
+    });
+    return res.status(200).json({
+        success:true,
+        data: updatedUser,
     });
 });
 
