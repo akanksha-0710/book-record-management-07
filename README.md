@@ -30,7 +30,12 @@ GET: Get all issued books
 GET: Get all issued books with fine
 
 Subscription Types
-Basic (3 months) Standard (6 months) Premium (12 months)
+Basic (3 months)
+ Standard (6 months) 
+ Premium (12 months)
+
+NOTE: Dates will be in formate 0f MM/dd/year
+
 
 If the subscription date is 01/08/22 and Subscription type is Standard the valid till date will be 01/02/23
 
